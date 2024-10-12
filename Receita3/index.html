@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css"> 
+</head>
+<body>
+    <div id="texto">Guinness</div>
+    <div>
+        <button id="botaoCarregar" onclick="mudaDiv('texto')">Carregar Cervejas...</button>
+    </div>
+
+    <script>
+        function mudaDiv(e) {
+            const div = document.getElementById(e);
+            div.classList.toggle('mostrar'); 
+            if (!div.classList.contains('mostrar')) {
+                setTimeout(() => {
+                    div.innerHTML = "";
+                }, 500); 
+            } else {
+                div.innerHTML = "<h1>Guinness</h1>";
+            }
+        }
+    </script>
+</body>
+</html>
