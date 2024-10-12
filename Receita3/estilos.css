@@ -1,0 +1,8 @@
+#texto {
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.5s; /* Transição suave de 0.5 segundos */
+}
+
+#texto.mostrar {
+    opacity: 1; /* Texto visível */
+}
