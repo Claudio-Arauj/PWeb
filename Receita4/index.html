@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <link href="estilos.css" rel="stylesheet">
+        <meta charset="UTF-8">      
+    </head>
+
+    <body>
+        <div id="meu amor" class = "container">
+            <button id="botaoCarregar">Carregando cervejas...</button>
+        </div>
+        <div class = "container">
+            <button id="botaoOrdenar">Ordenar cervejas</button>
+        </div>
+        <div class = "container">
+            <button id="botaoAleatorio">Embaralhar Cervejas</button>
+        </div>            
+    </body>   
+   
+    <script>
+
+        let cervejas = ["Guiness", "Desperados", "Becks", "Bavária", "Adriática", "Devassa", "Skol"]
+
+        function transformar(item){
+            return `<tr><td>${item}</td></tr>`
+        }
+
+        function carregarDiv(){
+            let div = document.getElementById("meu amor")
+            //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`]
+            let cervejasHtml = cervejas.map(transformar)
+            div.innerHTML = `<table border = 1><thead><tr><th>Cervejas:</th></tr></thead><tbody>${cervejasHtml.join("\n")}</tbody></table>`
+            //div.innerHTML = `${cervejasHtml.join("\n")}`
+
+            document.getElementById("botaoOrdenar").style.display = "inline-block"
+            document.getElementById("botaoAleatorio").style.display = "inline-block"
+        }
+        
+        function ordenarDiv(){
+            cervejas.sort()
+            carregarDiv()
+        }
+
+        function embaralharDiv(){
+            cervejas.sort(() => Math.random() - 0.5)
+            carregarDiv()
+        }
+
+        let botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", carregarDiv)
+        
+        let botao2 = document.getElementById("botaoOrdenar")
+        botao2.addEventListener("click", ordenarDiv)
+
+        let botao3 = document.getElementById("botaoAleatorio")
+        botao3.addEventListener("click", embaralharDiv)
+    </script>
+</html>
