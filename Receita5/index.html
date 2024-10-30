@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>   
+    <head>
+        <link href="estilos.css" rel="stylesheet">
+        <meta charset="UTF-8">      
+    </head>
+   
+    <body>
+        <div><a href="#" id="linkCarregar">Carregando roupas...</a></div>
+        <div id="meu-amor"></div>
+
+        <div class="container">
+            <a href="#" id="linkOrdenar">Ordenar roupas</a>
+        </div>
+
+        <div class="container">
+            <a href="#" id="linkAleatorio">Embaralhar Roupas</a>
+        </div>               
+    </body>   
+
+    <script>
+        let roupas = ["Camiseta", "Calça", "Jaqueta", "Vestido", "Saia", "Casaco", "Meia", "Sapato"]
+
+        const carregarDiv = (roupas) => {
+            const div = document.getElementById("meu-amor")
+            const roupasHtml = roupas.map(item => `<tr><td>${item}</td></tr>`)
+            div.innerHTML = `<table border=1><thead><tr><th>Roupas:</th></tr></thead><tbody>${roupasHtml.join("\n")}</tbody></table>`
+
+            document.getElementById("linkOrdenar").style.display = "inline-block"
+            document.getElementById("linkAleatorio").style.display = "inline-block"
+        }
+
+        const ordenarDiv = () => {
+            roupas.sort()
+            carregarDiv(roupas)
+        }
+
+        const embaralharDiv = () => {
+            roupas.sort(() => Math.random() - 0.5)
+            carregarDiv(roupas)
+        }
+
+        let linkCarregar = document.getElementById("linkCarregar")
+        let linkOrdenar = document.getElementById("linkOrdenar")
+        let linkAleatorio = document.getElementById("linkAleatorio")
+
+        linkCarregar.addEventListener("click", (e) => {
+            e.preventDefault() // Previne o comportamento padrão do link
+            carregarDiv(roupas)
+            linkCarregar.style.display = "none" // Faz o link desaparecer
+        })
+        linkOrdenar.addEventListener("click", (e) => {
+            e.preventDefault()
+            ordenarDiv()
+        })
+        linkAleatorio.addEventListener("click", (e) => {
+            e.preventDefault()
+            embaralharDiv()
+        })
+    </script>
+</html>
