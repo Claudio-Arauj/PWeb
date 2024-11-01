@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <meta charset="UTF-8">    
+        <link href="estilos.css" rel="stylesheet">    
+    </head>
+
+    <body>
+        <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+        <div id="cervejasDiv"></div>            
+    </body>  
+
+    <script>
+        let cervejas = [
+            { name: "Guinness", alcohol: "10%", style: "Stout", ibu: "45" },
+            { name: "Desperados", alcohol: "6%", style: "Lager", ibu: "15" },
+            { name: "Becks", alcohol: "5%", style: "Pilsner", ibu: "20" },
+            { name: "Heineken", alcohol: "5%", style: "Lager", ibu: "19" },
+            { name: "Budweiser", alcohol: "5%", style: "American Lager", ibu: "12" },
+            { name: "Corona", alcohol: "4.6%", style: "Pale Lager", ibu: "10" },
+            { name: "Hoegaarden", alcohol: "4.9%", style: "Witbier", ibu: "15" },
+            { name: "Leffe Blonde", alcohol: "6.6%", style: "Blonde Ale", ibu: "20" },
+            { name: "Duvel", alcohol: "8.5%", style: "Belgian Strong Ale", ibu: "30" },
+            { name: "Chimay Blue", alcohol: "9%", style: "Belgian Dubbel", ibu: "35" },
+            { name: "Samuel Adams Boston Lager", alcohol: "5%", style: "Vienna Lager", ibu: "30" },
+            { name: "Brooklyn Lager", alcohol: "5.2%", style: "Amber Lager", ibu: "33" },
+            { name: "Lagunitas IPA", alcohol: "6.2%", style: "IPA", ibu: "51" },
+            { name: "Sierra Nevada Pale Ale", alcohol: "5.6%", style: "Pale Ale", ibu: "38" },
+            { name: "Blue Moon", alcohol: "5.4%", style: "Witbier", ibu: "9" },
+            { name: "Stone IPA", alcohol: "6.9%", style: "IPA", ibu: "77" },
+            { name: "Newcastle Brown Ale", alcohol: "4.7%", style: "Brown Ale", ibu: "18" },
+            { name: "Paulaner Hefe-Weißbier", alcohol: "5.5%", style: "Hefeweizen", ibu: "12" },
+            { name: "Pilsner Urquell", alcohol: "4.4%", style: "Pilsner", ibu: "30" },
+            { name: "Asahi Super Dry", alcohol: "5%", style: "Japanese Lager", ibu: "16" }
+        ]
+
+        const carregarDiv = (
+            cs,
+            elementoId = "cervejasDiv",
+            propriedades = { name: "name", alcohol: "alcohol", style: "style", ibu: "ibu" }) => {
+            const div = document.getElementById(elementoId);
+            if (!div) {
+                console.warn(`Elemento com ID "${elementoId}" não encontrado.`)
+                return
+            }
+            
+            const tabelaHtml = `
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>Cerveja</th>
+                            <th>Teor Alcoólico</th>
+                            <th>Estilo</th>
+                            <th>IBU</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${cs.map(item => `
+                            <tr>
+                                <td>${item[propriedades.name] || "N/A"}</td>
+                                <td>${item[propriedades.alcohol] || "N/A"}</td>
+                                <td>${item[propriedades.style] || "N/A"}</td>
+                                <td>${item[propriedades.ibu] || "N/A"}</td>
+                            </tr>`).join('')}
+                    </tbody>
+                </table>`
+            div.innerHTML = tabelaHtml
+        }
+
+        let botao = document.getElementById("botaoCarregar")
+        botao.addEventListener("click", () => {
+            carregarDiv(cervejas)
+            botao.style.display = "none"
+        })                 
+    </script>
+</html>

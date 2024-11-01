@@ -1,0 +1,40 @@
+table {
+    border-collapse: collapse;
+    width: auto; /* A tabela se ajusta ao conteúdo */
+    max-width: 100%; /* Limita a largura total */
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    min-width: 120px; /* Tamanho mínimo para acomodar conteúdo */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+th {
+    background-color: #04AA6D;
+    color: white;
+}
+
+/* Estilo do botão */
+#botaoCarregar {
+    background-color: #04AA6D;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+#botaoCarregar:hover {
+    background-color: #028a5b;
+}
+
+#botaoCarregar:active {
+    background-color: #026b47;
+}
