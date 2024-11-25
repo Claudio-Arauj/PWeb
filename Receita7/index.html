@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <meta charset="UTF-8">    
+        <link href="estilos.css" rel="stylesheet">   
+        <script src="tabela.js"></script> 
+    </head>
+
+    <body>
+        <div><button id="botaoCarregar">Carregar usuários...</button></div>
+        <br>
+        <div id="usuariosDiv"></div>            
+    </body>   
+
+    <script>
+        // Função para carregar e exibir dados dos usuários
+        async function carregarUsuarios() {
+            try {
+                let res = await fetch("https://random-data-api.com/api/v2/users?size=10");
+                let usuarios = await res.json();
+
+                const colunas = ['first_name', 'last_name', 'email', 'date_of_birth'];
+
+                const tabelaHtml = criarTabela(usuarios, colunas);
+
+                // Exibir a tabela na página
+                document.getElementById("usuariosDiv").innerHTML = tabelaHtml;
+            } catch (err) {
+                document.getElementById("usuariosDiv").innerHTML = "Erro ao carregar dados...";
+            }
+        }
+        
+        document.getElementById("botaoCarregar").addEventListener("click", carregarUsuarios);
+    </script>
+</html>
