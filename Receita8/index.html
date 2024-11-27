@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>   
+    <head>
+        <meta charset="UTF-8">    
+        <link href="estilos.css" rel="stylesheet">   
+        <script src="tabela.js"></script> 
+    </head>
+
+    <body>
+        <div><button id="botaoCarregar">Carregar usuários...</button></div>
+        <br>
+        <div id="usuariosDiv"></div>            
+    </body>   
+
+    <script>
+        // Função para carregar e exibir dados dos usuários usando Promise/then/catch
+        function carregarUsuarios() {
+            fetch("https://random-data-api.com/api/v2/users?size=10")
+                .then(function(res) {
+                    if (!res.ok) {
+                        throw new Error("Erro ao carregar dados...");
+                    }
+                    return res.json();  
+                })
+                .then(function(usuarios) {
+                    const colunas = ['first_name', 'last_name', 'email', 'date_of_birth'];
+
+                    // Criar a tabela com os dados dos usuários
+                    const tabelaHtml = criarTabela(usuarios, colunas);
+
+                    // Exibir a tabela na página
+                    document.getElementById("usuariosDiv").innerHTML = tabelaHtml;
+                })
+                .catch(function(err) {
+                    // Caso ocorra um erro, exibir uma mensagem
+                    document.getElementById("usuariosDiv").innerHTML = err.message;
+                });
+        }
+        
+        document.getElementById("botaoCarregar").addEventListener("click", carregarUsuarios);
+    </script>
+</html>
