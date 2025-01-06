@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ReactZero</title>
+    <link href="estilos.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="libs/react.js"></script>
+    <script src="libs/react-dom.js"></script>
+    <script src="libs/babel.js"></script>
+
+    <script type="text/babel">
+        const cachacas = [
+            { nome: "Havana", marca: "Engenho Anísio Santiago", origem: "Salinas - MG" },
+            { nome: "Canarinha", marca: "Duas Marias", origem: "Montes Claros - MG" },
+            { nome: "Seleta", marca: "Seleta", origem: "Salinas - MG" },
+            { nome: "Vale Verde", marca: "Vale Verde", origem: "Betim - MG" }
+        ];
+
+        function Cabecalho() {
+            return <h1>Minha tabela de cachaças</h1>;
+        }
+
+        function TabelaBebidas() {
+            return (
+                <table id="tabela" border="1">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Marca</th>
+                            <th>Origem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {cachacas.map((item, index) => (
+                            <tr key={index}>
+                                <td>{item.nome}</td>
+                                <td>{item.marca}</td>
+                                <td>{item.origem}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            );
+        }
+
+        function renderTabela() {
+            ReactDOM.render(
+                <div>
+                    <Cabecalho />
+                    <TabelaBebidas />
+                </div>,
+                document.getElementById("app")
+            );
+        }
+
+        ReactDOM.render(
+            <div>
+                <button onClick={renderTabela}>Mostrar Tabela de Cachaças</button>
+            </div>,
+            document.getElementById("app")
+        );
+    </script>
+</body>
+</html>
