@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReceitaReact - Classes</title>
+        <link href="estilos.css" rel="stylesheet">      
+    </head>
+    <body>
+        <div id="app"></div>
+        <div id="app2"></div>
+
+        <script src="libs/react.js"></script>
+        <script src="libs/react-dom.js"></script>
+        <script src="libs/babel.js"></script>
+                
+        <script type="text/babel">
+            class TabelaBebidas extends React.Component {
+                render() {
+                    // Acessando a propriedade 'titulo' do componente
+                    return (
+                        <div>
+                            <h1>{this.props.titulo}</h1>
+                            <table id="tabela" border="1">
+                                <thead>
+                                    <tr><th>Nome</th><th>Marca</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Havana</td><td>Engenho Anísio Santiago</td></tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    );
+                }
+            }
+
+            class TabelaComidas extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            <h1>{this.props.titulo}</h1>
+                            <table id="tabela" border="1">
+                                <thead>
+                                    <tr><th>Nome</th><th>Peso</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>Salada de Frutas</td><td>500mg</td></tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                    );
+                }
+            }
+            
+            ReactDOM.render(
+                // Passando a prop 'titulo' para o componente TabelaBebidas
+                <TabelaBebidas titulo="Tabela de Cana"/>,
+                document.getElementById("app")
+            );
+
+            ReactDOM.render(
+                <TabelaComidas titulo="Tabela de Lanche"/>,
+                document.getElementById("app2")
+            );
+        </script>
+    </body>
+</html>
