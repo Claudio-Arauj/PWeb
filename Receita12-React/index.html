@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>ReceitaReact - 3</title>
+        <link href="estilos.css" rel="stylesheet"> 
+    </head>
+
+    <body>
+        <div id="app"></div>
+
+        <script src="libs/react.js"></script>
+        <script src="libs/react-dom.js"></script>
+        <script src="libs/babel.js"></script>
+
+        <script type="text/babel">
+        const TabelaBebidas = ({titulo, cabecalhos, conteudo}) => {
+            return (
+            <div>
+                <h1>{titulo}</h1>
+                <table id="tabela" border="1">
+                <thead>
+                    <tr>
+                    {cabecalhos.map((cabecalho, index) => (
+                        <th key={index}>{cabecalho}</th>
+                    ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {conteudo.map((linha, index) => (
+                    <tr key={index}>
+                        {cabecalhos.map((cabecalho, i) => (
+                        <td key={i}>{linha[cabecalho]}</td>
+                        ))}
+                    </tr>
+                    ))}
+                </tbody>
+                </table>
+            </div>
+            )
+        }
+
+        const valoresCabecalhos = ["Nome", "Marca", "Ano", "Origem"];
+        const dadosConteudo = [
+            { Nome: "Havana", Marca: "Engenho Anísio Santiago", Ano: 2019, Origem: "Cuba" },
+            { Nome: "Ypióca", Marca: "Ypióca", Ano: 2020, Origem: "Brasil" },
+            { Nome: "Cachaça 51", Marca: "51", Ano: 2021, Origem: "Brasil" }
+        ];
+
+        ReactDOM.render(
+            <TabelaBebidas titulo="Minha Tabela de Bebidas" cabecalhos={valoresCabecalhos} conteudo={dadosConteudo} />,
+            document.getElementById("app")
+        )
+        </script>
+    </body>
+
+</html>
